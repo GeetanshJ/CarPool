@@ -1,9 +1,6 @@
 package car_pooling.models;
 
 import jakarta.persistence.*;
-import java.time.*;
-
-import car_pooling.enums.RideStatus;
 
 @Entity
 @Table(name = "rides")
@@ -11,72 +8,63 @@ public class Ride {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rideId;
+    private Long id;
 
-    private String pickupLocation;
-    private String dropLocation;
-    private LocalDate rideDate;
-    private LocalTime rideTime;
+    private String source;
+    private String destination;
+    private String departureTime;
+    private String expectedArrivalTime;
     private int availableSeats;
     private double price;
 
-    @Enumerated(EnumType.STRING)
-    private RideStatus status;
-
-    private LocalDateTime createdAt;
-
     @ManyToOne
-    @JoinColumn(name = "driver_id")
-    private User driver;
+    @JoinColumn(name = "rider_id")
+    private Rider rider;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
-
-    public int getRideId() {
-        return rideId;
+    public Long getId() {
+        return id;
+    }
+ 
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setRideId(int rideId) {
-        this.rideId = rideId;
+    public String getSource() {
+        return source;
+    }
+ 
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getPickupLocation() {
-        return pickupLocation;
+    public String getDestination() {
+        return destination;
+    }
+ 
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public void setPickupLocation(String pickupLocation) {
-        this.pickupLocation = pickupLocation;
+    public String getDepartureTime() {
+        return departureTime;
+    }
+ 
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
     }
 
-    public String getDropLocation() {
-        return dropLocation;
+    public String getExpectedArrivalTime() {
+        return expectedArrivalTime;
     }
-
-    public void setDropLocation(String dropLocation) {
-        this.dropLocation = dropLocation;
-    }
-
-    public LocalDate getRideDate() {
-        return rideDate;
-    }
-
-    public void setRideDate(LocalDate rideDate) {
-        this.rideDate = rideDate;
-    }
-
-    public LocalTime getRideTime() {
-        return rideTime;
-    }
-
-    public void setRideTime(LocalTime rideTime) {
-        this.rideTime = rideTime;
+ 
+    public void setExpectedArrivalTime(String expectedArrivalTime) {
+        this.expectedArrivalTime = expectedArrivalTime;
     }
 
     public int getAvailableSeats() {
         return availableSeats;
     }
-
+ 
     public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
     }
@@ -84,41 +72,16 @@ public class Ride {
     public double getPrice() {
         return price;
     }
-
+ 
     public void setPrice(double price) {
         this.price = price;
     }
 
-    public RideStatus getStatus() {
-        return status;
+    public Rider getRider() {
+        return rider;
     }
-
-    public void setStatus(RideStatus status) {
-        this.status = status;
+ 
+    public void setRider(Rider rider) {
+        this.rider = rider;
     }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public User getDriver() {
-        return driver;
-    }
-
-    public void setDriver(User driver) {
-        this.driver = driver;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-    }
-
 }

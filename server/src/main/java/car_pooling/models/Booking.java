@@ -1,79 +1,62 @@
 package car_pooling.models;
 
 import jakarta.persistence.*;
-import java.time.*;
-
-import car_pooling.enums.BookingStatus;
-
 @Entity
 @Table(name = "bookings")
 public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookingId;
+    private Long id;
 
-    private int seatsBooked;
-
-    @Enumerated(EnumType.STRING)
-    private BookingStatus bookingStatus;
-
-    private LocalDateTime bookingTime;
+    private String bookingTime;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "ride_id")
     private Ride ride;
 
     @ManyToOne
-    @JoinColumn(name = "passenger_id")
-    private User passenger;
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public int getBookingId() {
-        return bookingId;
+    public Long getId() {
+        return id;
+    }
+ 
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
-    }
-
-    public int getSeatsBooked() {
-        return seatsBooked;
-    }
-
-    public void setSeatsBooked(int seatsBooked) {
-        this.seatsBooked = seatsBooked;
-    }
-
-    public BookingStatus getBookingStatus() {
-        return bookingStatus;
-    }
-
-    public void setBookingStatus(BookingStatus bookingStatus) {
-        this.bookingStatus = bookingStatus;
-    }
-
-    public LocalDateTime getBookingTime() {
+    public String getBookingTime() {
         return bookingTime;
     }
-
-    public void setBookingTime(LocalDateTime bookingTime) {
+ 
+    public void setBookingTime(String bookingTime) {
         this.bookingTime = bookingTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+ 
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Ride getRide() {
         return ride;
     }
-
+ 
     public void setRide(Ride ride) {
         this.ride = ride;
     }
 
-    public User getPassenger() {
-        return passenger;
+    public User getUser() {
+        return user;
     }
-
-    public void setPassenger(User passenger) {
-        this.passenger = passenger;
+ 
+    public void setUser(User user) {
+        this.user = user;
     }
-
 }
