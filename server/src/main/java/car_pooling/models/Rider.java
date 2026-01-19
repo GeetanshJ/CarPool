@@ -8,9 +8,11 @@ public class Rider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String licenseNumber;
+    @Column(nullable = false)
     private String carName;
+    @Column(nullable = false)
     private String carColor;
+    @Column(nullable = false)
     private String carNumber;
 
     @OneToOne
@@ -23,14 +25,6 @@ public class Rider {
  
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
- 
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
     }
 
     public String getCarName() {

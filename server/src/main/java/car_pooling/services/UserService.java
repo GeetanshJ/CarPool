@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import car_pooling.models.User;
 import car_pooling.repository.UserRepository;
-import car_pooling.security.JwtUtil;
 
 @Service
 public class UserService {
@@ -21,10 +20,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public String login(String email, String password) {
+    public User loginAuth(String email, String password) {
         User user = userRepository.findByEmail(email);
         if (user != null && encoder.matches(password, user.getPassword())) {
-            return JwtUtil.generateToken(email);
+            return user;
+            
         }
         return null;
     }

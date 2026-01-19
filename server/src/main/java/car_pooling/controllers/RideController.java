@@ -15,6 +15,7 @@ public class RideController {
 
     @PostMapping("/create")
     public Ride create(@RequestBody Ride ride) {
+        System.out.println(ride);
         return rideService.createRide(ride);
     }
 
